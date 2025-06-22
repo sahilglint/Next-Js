@@ -27,8 +27,8 @@
 .two-column-content {
   display: flex;
   flex-direction: column-reverse;
-  gap: 2rem;
-  padding: 2.5rem 1rem;
+  gap: 1.5rem;
+  padding: 1.5rem 1rem;
   align-items: center;
 }
 
@@ -38,19 +38,19 @@
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #4b5563;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .cta-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.25rem;
   background-color: #2563eb;
   color: white;
   font-weight: 500;
@@ -67,7 +67,7 @@
 
 .image-section {
   width: 100%;
-  min-height: 250px;
+  min-height: 200px;
   position: relative;
   aspect-ratio: 16 / 9;
 }
@@ -171,10 +171,42 @@
   }
 
   .heading {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .subtitle {
     font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .cta-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .image-section {
+    min-height: 180px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1rem;
+  }
+
+  .modal-input {
+    font-size: 0.9rem;
   }
 }
