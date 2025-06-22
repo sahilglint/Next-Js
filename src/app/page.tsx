@@ -22,10 +22,16 @@ import {
 
 import HeroBlock from '../block/HeroBlock';
 import TwoColumnRow from '../block/TwoColumnRow';
-import ImageGrid from '../block/Imagegrid';
+import ImageGrid from '../block/Imagegrid'; 
 import SortableBlock from '../block/SortableBlock';
 
 import '../styles/LayoutCanvas.css';
+
+import type {
+  HeroBlockData,
+  TwoColumnRowData,
+  ImageGridData,
+} from '../redux/layoutSlice';
 
 const LayoutCanvas: React.FC = () => {
   const dispatch = useDispatch();
@@ -57,19 +63,19 @@ const LayoutCanvas: React.FC = () => {
       case 'hero':
         return (
           <SortableBlock key={id} id={id}>
-            <HeroBlock {...data} />
+            <HeroBlock {...(data as HeroBlockData)} />
           </SortableBlock>
         );
       case 'twoColumn':
         return (
           <SortableBlock key={id} id={id}>
-            <TwoColumnRow {...data} />
+            <TwoColumnRow {...(data as TwoColumnRowData)} />
           </SortableBlock>
         );
       case 'imageGrid':
         return (
           <SortableBlock key={id} id={id}>
-            <ImageGrid {...data} />
+            <ImageGrid /> 
           </SortableBlock>
         );
       default:

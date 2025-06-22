@@ -20,12 +20,18 @@ const ImageGrid: React.FC = () => {
 
   useEffect(() => {
     const stored = localStorage.getItem('imageGrid');
-    if (stored) setImages(JSON.parse(stored));
+    if (stored) {
+      try {
+        const parsed: ImageData[] = JSON.parse(stored);
+        setImages(parsed);
+      } catch (err) {
+        console.error('Failed to parse stored images:', err);
+      }
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('imageGrid', JSON.stringify(images));
-    localStorage.setItem('layoutConfig', JSON.stringify({ blocks: images }));
   }, [images]);
 
   const handleImageClick = () => {
@@ -36,13 +42,14 @@ const ImageGrid: React.FC = () => {
     const file = e.target.files?.[0];
     if (file) {
       const uploadedUrl = await uploadToContentful(file);
-      const newImages = [...images, { src: uploadedUrl, caption }];
-      setImages(newImages);
+      const newImage: ImageData = { src: uploadedUrl, caption };
+      setImages((prev) => [...prev, newImage]);
       setCaption('');
       toast.success('Image added successfully!');
     }
   };
 
+  // Simulated image upload
   const uploadToContentful = async (file: File): Promise<string> => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -61,20 +68,25 @@ const ImageGrid: React.FC = () => {
   };
 
   const handleEditSave = () => {
+    if (editIdx === null) return;
     const updated = [...images];
-    if (editIdx !== null) {
-      updated[editIdx].caption = editValue;
-      setImages(updated);
-    }
+    updated[editIdx].caption = editValue;
+    setImages(updated);
     setEditIdx(null);
     setEditValue('');
-    toast.success('Content updated successfully!');
+    toast.success('Caption updated successfully!');
   };
 
   return (
     <div className="image-grid-container">
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar />
-      <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} className="hidden-input" />
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        className="hidden-input"
+      />
 
       <div className="form-bar">
         <input
@@ -92,13 +104,17 @@ const ImageGrid: React.FC = () => {
       <div className="grid-wrapper">
         {images.map(({ src, caption }, idx) => (
           <motion.div
-            key={idx}
+            key={src + idx}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
             className="grid-item"
           >
-            <img src={src || `https://placehold.co/200x150?text=${idx + 1}`} alt={`grid-${idx}`} className="grid-img" />
+            <img
+              src={src || `https://placehold.co/200x150?text=${idx + 1}`}
+              alt={`grid-${idx}`}
+              className="grid-img"
+            />
             <div className="grid-hover">
               <button onClick={() => openEditModal(idx)} className="grid-btn edit">
                 Edit
@@ -123,8 +139,12 @@ const ImageGrid: React.FC = () => {
               className="modal-input"
             />
             <div className="modal-actions">
-              <button onClick={() => setEditIdx(null)} className="modal-btn cancel">Cancel</button>
-              <button onClick={handleEditSave} className="modal-btn save">Save</button>
+              <button onClick={() => setEditIdx(null)} className="modal-btn cancel">
+                Cancel
+              </button>
+              <button onClick={handleEditSave} className="modal-btn save">
+                Save
+              </button>
             </div>
           </div>
         </div>

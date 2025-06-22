@@ -7,35 +7,18 @@ import { v4 as uuid } from 'uuid';
 import { FaChevronLeft, FaChevronRight, FaImage, FaThLarge, FaColumns } from 'react-icons/fa';
 import '../../styles/Sidebar.css';
 
+import type {
+  BlockType,
+  HeroBlockData,
+  TwoColumnRowData,
+  ImageGridData,
+} from '../../redux/layoutSlice';
+
 const COMPONENTS = [
   { type: 'hero', label: 'Hero Block', icon: <FaImage className="icon" /> },
   { type: 'twoColumn', label: 'Two Column Row', icon: <FaColumns className="icon" /> },
   { type: 'imageGrid', label: '2×2 Image Grid', icon: <FaThLarge className="icon" /> },
 ];
-
-type BlockType = 'hero' | 'twoColumn' | 'imageGrid';
-
-interface HeroData {
-  heading: string;
-  subtitle: string;
-  cta: string;
-  backgroundImage: string;
-}
-
-interface TwoColumnData {
-  left: {
-    heading: string;
-    subtitle: string;
-    cta: string;
-  };
-  right: {
-    image: string;
-  };
-}
-
-interface ImageGridData {
-  images: string[];
-}
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -51,34 +34,39 @@ const Sidebar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
- const handleAdd = (type: BlockType) => {
-  let data: HeroData | TwoColumnData | ImageGridData;
+  const handleAdd = (type: BlockType) => {
+    let data: HeroBlockData | TwoColumnRowData | ImageGridData;
 
-  switch (type) {
-    case 'hero':
-      data = {
-        heading: 'Heading',
-        subtitle: 'Subtitle',
-        cta: 'Click Me',
-        backgroundImage: '',
-      };
-      break;
-    case 'twoColumn':
-      data = {
-        left: { heading: 'Left Heading', subtitle: 'Left Sub', cta: 'Click Me' },
-        right: { image: '' },
-      };
-      break;
-    case 'imageGrid':
-      data = { images: ['', '', '', ''] };
-      break;
-    default:
-      return;
-  }
+    switch (type) {
+      case 'hero':
+        data = {
+          heading: 'Hero Heading',
+          subtitle: 'Hero Subtitle',
+          cta: 'Click Me',
+        };
+        break;
 
-  dispatch(addBlock({ id: uuid(), type, data }));
-};
+      case 'twoColumn':
+        data = {
+          heading: 'Two Column Heading',
+          subtitle: 'Two Column Subtitle',
+          cta: 'Click Here',
+          imageUrl: '',
+        };
+        break;
 
+      case 'imageGrid':
+        data = {
+          images: ['', '', '', ''],
+        };
+        break;
+
+      default:
+        return;
+    }
+
+    dispatch(addBlock({ id: uuid(), type, data }));
+  };
 
   return (
     <div className={`sidebar ${collapsed || isSmallScreen ? 'collapsed' : ''}`}>
