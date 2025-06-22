@@ -1,0 +1,55 @@
+.layout-canvas {
+  flex: 1;
+  padding: 24px;
+  background-color: #f9fafb;
+  overflow-y: auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .layout-canvas {
+    padding: 16px;
+  }
+
+  .block-list {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .layout-canvas {
+    padding: 12px;
+  }
+
+  .block-list {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout-canvas {
+    padding: 10px;
+    width: 55%;
+  }
+
+  .block-list {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .layout-canvas {
+    padding: 8px;
+  }
+
+  .block-list {
+    gap: 8px;
+  }
+}

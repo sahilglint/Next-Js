@@ -1,0 +1,39 @@
+
+.landing-container {
+  padding: 1rem;
+  position: relative;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.loading-text {
+  color: #666;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.hero-wrapper {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .landing-container {
+    padding: 2rem 3rem;
+  }
+
+  .hero-wrapper {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .landing-container {
+    padding: 3rem 5rem;
+  }
+
+  .hero-wrapper {
+    margin-bottom: 3rem;
+  }
+}

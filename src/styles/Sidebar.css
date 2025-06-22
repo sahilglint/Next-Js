@@ -1,0 +1,106 @@
+.sidebar {
+  position:static;
+ 
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 30;
+  overflow-y: auto;
+  background-color: #fff;
+  border-right: 1px solid #e5e7eb;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+  width: 33.33%;
+}
+
+.sidebar.collapsed {
+  width: 4rem;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 4rem;
+  }
+}
+
+.sidebar-inner {
+  padding: 1rem;
+}
+
+.toggle-wrapper {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.toggle-wrapper.right {
+  justify-content: flex-end;
+}
+
+.toggle-wrapper.center {
+  justify-content: center;
+}
+
+.toggle-btn {
+  background-color: #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #d1d5db;
+}
+
+.sidebar-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.component-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.component-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f3f4f6; 
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.component-btn:hover {
+  background-color: #e5e7eb; 
+}
+
+.component-btn.centered {
+  justify-content: center;
+}
+
+.icon-wrapper {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.icon-wrapper:hover {
+  transform: scale(1.1);
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,180 @@
+.two-column-container {
+  background: linear-gradient(to bottom right, white, #ebf4ff, white);
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.edit-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  z-index: 10;
+  background: rgba(11, 11, 11, 0.2);
+  padding: 0.5rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.two-column-content {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2rem;
+  padding: 2.5rem 1rem;
+  align-items: center;
+}
+
+.text-section {
+  width: 100%;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #1e40af;
+}
+
+.image-section {
+  width: 100%;
+  min-height: 250px;
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: opacity 1s ease;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  color: black;
+}
+
+.modal-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.cancel, .save {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.cancel {
+  background: #e5e7eb;
+}
+
+.cancel:hover {
+  background: #d1d5db;
+}
+
+.save {
+  background: #2563eb;
+  color: white;
+}
+
+.save:hover {
+  background: #1e40af;
+}
+
+@media (min-width: 768px) {
+  .two-column-content {
+    flex-direction: row;
+    padding: 2.5rem 3rem;
+  }
+
+  .text-section {
+    width: 50%;
+    text-align: left;
+  }
+
+  .image-section {
+    width: 50%;
+    aspect-ratio: auto;
+  }
+
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+  }
+}
